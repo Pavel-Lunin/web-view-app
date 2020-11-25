@@ -1,0 +1,12 @@
+{
+  "name": "web-view",
+  "displayName": "web-view",
+  "expo": {
+    "name": "web-view",
+    "slug": "web-view",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
