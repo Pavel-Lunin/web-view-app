@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import OneSignal from 'react-native-onesignal';
+import NewApp from './src';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+function App() {
+  React.useEffect(() => {
+    OneSignal.init('f6415aee-11e1-4553-b6d0-d233ef07cc9c');
+
+    OneSignal.addEventListener('opened', onOpened);
+    return () => OneSignal.removeEventListener('opened', onOpened);
+  }, []);
+
+  function onOpened(openResult) {
+    console.log('Message: ', openResult.notification.payload.body);
+    console.log('openResult: ', openResult);
+  }
+
+  return <NewApp />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
